@@ -6,16 +6,33 @@
 //  Copyright (c) 2014 Devon Ryan. All rights reserved.
 //
 
+#import  <Parse/Parse.h>
 #import "CSAppDelegate.h"
 
 @implementation CSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    
+    
+    NSLog(@"Bundle ID: %@",[[NSBundle mainBundle] bundleIdentifier]);
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard storyboardWithName:@"Storyboard"
+                                                             bundle: nil];
+    
+    [Parse setApplicationId:@"hi1oDjg7OJ11zwUujWvQYq74O7KT0dIk0C6ycOr3"
+                  clientKey:@"BU6oT3iWFyuhJpZ9yF47S8JGaAD3caxHJNzwKfcr"];
+    
+    /***** PARSE ANALYTICS *****/
+    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window setRootViewController:[mainStoryboard instantiateInitialViewController]];
     [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
 
